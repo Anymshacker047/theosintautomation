@@ -1,113 +1,116 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
-  --bg-color: #050505;
-  --panel-bg: rgba(20, 20, 25, 0.7);
-  --accent-primary: #00f2ff;
-  --accent-secondary: #7000ff;
-  --text-main: #e0e0e0;
-  --text-muted: #888888;
-  --glass-border: rgba(255, 255, 255, 0.1);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  --bg-deep: #0B141B;
+  --bg-panel: #1A2632;
+  --accent-yellow: #FFC107;
+  --accent-yellow-hover: #e0a800;
+  --text-main: #FFFFFF;
+  --text-muted: #A0AEC0;
+  --alert-red: #E53E3E;
+  --tag-teal: #38B2AC;
+  --border-color: rgba(255, 255, 255, 0.1);
 }
 
 body {
-  font-family: 'Outfit', sans-serif;
-  background-color: var(--bg-color);
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-deep);
   color: var(--text-main);
   overflow-x: hidden;
   min-height: 100vh;
-  background: radial-gradient(circle at 50% 50%, #0d1117 0%, #050505 100%);
 }
 
-#root {
-  min-height: 100vh;
+/* Hazard Strip */
+.hazard-strip {
+  background: repeating-linear-gradient(
+    45deg,
+    #FFC107,
+    #FFC107 10px,
+    #000000 10px,
+    #000000 20px
+  );
+  height: 24px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.glass {
-  background: var(--panel-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+.hazard-text {
+  background-color: #000;
+  color: #FFC107;
+  padding: 0 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-.glow-text {
-  text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+.panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
 }
 
 .cyber-input {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid var(--glass-border);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
   color: white;
-  padding: 12px 20px;
-  border-radius: 12px;
-  font-family: 'JetBrains Mono', monospace;
-  outline: none;
-  transition: all 0.3s ease;
+  padding: 10px 16px;
+  border-radius: 4px;
   width: 100%;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.2s;
+  outline: none;
 }
 
 .cyber-input:focus {
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+  border-color: var(--accent-yellow);
+  box-shadow: 0 0 8px rgba(255, 193, 7, 0.2);
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  border: none;
-  color: white;
+.btn-yellow {
+  background-color: var(--accent-yellow);
+  color: #000;
+  font-weight: 700;
   padding: 12px 24px;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  border-radius: 4px;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
+.btn-yellow:hover:not(:disabled) {
+  background-color: var(--accent-yellow-hover);
+  transform: translateY(-1px);
 }
 
-.results-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 20px;
-  padding: 20px 0;
+.btn-yellow:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-.result-card {
-  padding: 20px;
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.radar-bg {
+  background-image: 
+    linear-gradient(rgba(56, 178, 172, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 178, 172, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #050505;
+  background: var(--bg-deep);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #222;
-  border-radius: 4px;
+  background: #334155;
+  border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-primary);
+  background: var(--accent-yellow);
 }
